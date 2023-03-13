@@ -12,14 +12,10 @@ function UserSearch() {
 
   const {setAlert} = useContext(AlertContext)
 
-  const handleChange = (e) => {
-    setText(e.target.value)
-
-    e.preventDefault()
-  }
+  const handleChange = (e) => setText(e.target.value)
 
   //And since w're using await thee function changes to Async function
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
     if(text === '') {
@@ -31,6 +27,7 @@ function UserSearch() {
       //since w're returning the function we need to pass it into a variable and await it
       //and we need set the loading also from our component
       dispatch({type: 'SET_LOADING'})
+
       const users = await searchUsers(text)
      
       //And all we have to do is to dispatch the data
@@ -38,8 +35,8 @@ function UserSearch() {
 
       setText('')
     }
-
   }
+
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 mb-8 gap-8">
@@ -73,6 +70,7 @@ function UserSearch() {
       
     </div>
   )
+      
 }
 
 export default UserSearch

@@ -8,7 +8,6 @@ import GithubContext from "../context/github/GithubContext"
 import { getUserAndRepos } from '../context/github/GithubActions'
 
 function User() {
-
   // const {getUser, user, loading, getUserRepos, repos} = useContext(GithubContext)
 
   //since we are not passing the function through the context 
