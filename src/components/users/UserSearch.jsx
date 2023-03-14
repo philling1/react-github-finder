@@ -6,31 +6,22 @@ import { searchUsers } from '../../context/github/GithubActions'
 function UserSearch() {
   const [text, setText] = useState('')
 
-  //Before we brought in the function through the context but we are getting ride of that and pass in dispatch
-  // const {users, searchUsers, clearUsers} = useContext(GithubContext)
   const {users, dispatch} = useContext(GithubContext)
 
   const {setAlert} = useContext(AlertContext)
 
   const handleChange = (e) => setText(e.target.value)
 
-  //And since w're using await thee function changes to Async function
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if(text === '') {
+    if(text === ''){
       setAlert('Please enter something', 'error')
     }else { 
-      //searching for the users
-      //searchUsers(text)
-
-      //since w're returning the function we need to pass it into a variable and await it
-      //and we need set the loading also from our component
       dispatch({type: 'SET_LOADING'})
 
       const users = await searchUsers(text)
      
-      //And all we have to do is to dispatch the data
       dispatch({type: 'GET_USERS', payload: users})
 
       setText('')
@@ -61,7 +52,6 @@ function UserSearch() {
       
       {users.length > 0 && (
       <div>
-        {/* <button onClick={clearUsers} className="btn btn-ghost btn-lg"> */}
         <button onClick={() => dispatch({type: 'CLEAR_USERS'})} className="btn btn-ghost btn-lg">
           Clear
         </button>
